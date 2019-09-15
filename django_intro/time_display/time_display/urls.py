@@ -18,4 +18,5 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^', include('apps.app_one.urls')),
+    url(r'^random_word', include('apps.random_word.urls')),
 ]
