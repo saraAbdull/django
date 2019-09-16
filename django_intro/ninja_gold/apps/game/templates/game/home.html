@@ -1,0 +1,86 @@
+<head>
+    <style>
+      
+        div{
+            padding: 10px 100px;
+            margin: 10px 100px;
+            border: 3px solid black;
+            font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+        }
+        label{
+            font-weight: bold;
+        }
+        img{
+            width: 70px;
+            height: 50px ;
+        }
+        form{
+            width: 205px;
+            height: 150px ;
+            display:inline-block;
+            border: 3px solid black;
+            padding: 15px ;
+            margin: 10px 5px;
+            text-align: center;
+        }
+        .noFormat{
+            width: 105px;
+            height: 50px ;
+            border: 0px solid black;
+            padding: 10px ;
+        }
+        #acts{
+            height: 150px;
+            overflow-y: scroll;
+            margin: 10px ;
+        }
+
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<div id="container">
+    <h1> {{request.session.gold}}</h1>
+
+
+    <form action="/process_money" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="building" value="farm" />
+        <h3>Farm</h3>
+        <p>(earns 10-20 golds) </p>
+        <input type="submit" value="Find Gold!" class="btn btn-secondary"/>
+    </form>
+    <form action="/process_money" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="building" value="cave" />
+        <h3>Cave</h3>
+        <p>(earns 5-10 golds) </p>
+        <input type="submit" value="Find Gold!" class="btn btn-secondary"/>
+    </form>
+    <form action="/process_money" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="building" value="house" />
+        <h3>House</h3>
+        <p>(earns 2-5 golds) </p>
+        <input type="submit" value="Find Gold!"class="btn btn-secondary"/>
+    </form>
+    <form action="/process_money" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="building" value="casino" />
+        <h3>Casino</h3>
+        <p>(earns/loses 0-50 golds) </p>
+        <input type="submit" value="Find Gold!"class="btn btn-secondary"/>
+    </form>
+
+    <label >Activities: </label>
+
+    <div id='acts'  class="form-control" class="inlineblock" >
+        {% for i in request.session.acts  %}
+            {{ i |safe }}
+        {% endfor %}
+    </div>
+
+    <form class="noFormat"action="/restart" >
+        <input type="submit" value="Restart" class="btn btn-secondary"/>
+    </form>
+
+</div>
