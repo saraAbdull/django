@@ -1,0 +1,52 @@
+<head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+    
+    body{
+        padding: 10px 100px;
+    }
+    form{
+        padding: 20px 50px;
+        border: 4px dashed black;
+        width: 400px;
+        display: inline-block;
+
+    }
+    label{
+        font-weight: bold;
+    }
+    .inlineblock{
+        display: inline-block;
+    }
+    .table{
+        display: inline-block;
+        width: 50%;
+        margin:  0px 10px 0px 100px;
+        vertical-align: top;
+    }
+    </style>
+    </head>
+        <h1>{{auth.first_name}} {{auth.last_name}}</h1>
+        <form action='/authors' method='post'>
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleInputEmail1" class="inlineblock">ID: </label>
+                {{auth.id}}
+            </div>
+    
+            <div class="form-group">
+                <label for="exampleInputEmail1" class="inlineblock">Notes: </label>
+                {{auth.notes}}
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1" class="inlineblock">Books: </label>
+                <ul>
+                    {% for book in auth.books.all %}
+                        <li>{{ book.title }} </li>
+                    {% endfor %} 
+                </ul>           
+            </div>
+
+            
+        </form>

@@ -1,0 +1,51 @@
+<head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+    
+    body{
+        padding: 10px 100px;
+    }
+    #frame{
+        padding: 20px 50px;
+        border: 4px dashed black;
+        width: 400px;
+        display: inline-block;
+
+    }
+    label{
+        font-weight: bold;
+    }
+    .inlineblock{
+        display: inline-block;
+    }
+    .table{
+        display: inline-block;
+        width: 50%;
+        margin:  0px 10px 0px 100px;
+        vertical-align: top;
+    }
+    </style>
+    </head>
+        <h1>{{book.title}}</h1>
+        <div id="frame" >
+            <div class="form-group">
+                <label for="exampleInputEmail1" class="inlineblock">ID: </label>
+                {{book.id}}
+            </div>
+    
+            <div class="form-group">
+                <label for="exampleInputEmail1" class="inlineblock">Description: </label>
+                {{book.desc}}
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1" class="inlineblock">Authors: </label>
+                <ul>
+                    {% for auth in book.authors.all %}
+                        <li>{{ auth.first_name}} {{ auth.last_name}}</li>
+                    {% endfor %} 
+                </ul>           
+            </div>
+
+            
+        </div>

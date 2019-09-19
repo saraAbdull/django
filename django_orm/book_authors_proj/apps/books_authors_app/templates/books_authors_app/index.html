@@ -1,0 +1,64 @@
+<head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+    
+    body{
+        padding: 10px 100px;
+    }
+    form{
+        padding: 20px 50px;
+        border: 4px dashed black;
+        width: 400px;
+        display: inline-block;
+
+    }
+    label{
+        font-weight: bold;
+    }
+    .inlineblock{
+        display: inline-block;
+    }
+    .table{
+        display: inline-block;
+        width: 50%;
+        margin:  0px 10px 0px 100px;
+        vertical-align: top;
+    }
+    </style>
+    </head>
+        <h1>Add a New Book</h1>
+        <form action='/' method='post'>
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="exampleInputEmail1" class="inlineblock">Title: </label>
+                <input type='text' name='title' class="form-control" placeholder="Enter the first name" class="inlineblock">
+            </div>
+    
+            <br>
+            <div class="form-group">
+                <label for="exampleInputEmail1" class="inlineblock">Description : </label>
+                <textarea name='desc' rows="5" cols="10" type='text'  class="form-control" class="inlineblock" ></textarea>
+                
+            </div>
+    
+            <button type="submit" value='create user' class="btn btn-primary">Add</button>
+        </form>
+
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for book in all %}
+                    <tr>
+                        <th scope="row">{{ book.id }}</th>
+                        <td>{{ book.title }}</td>
+                        <td><a href="http://127.0.0.1:8000/books/{{ book.id }}">view</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+              </table>
